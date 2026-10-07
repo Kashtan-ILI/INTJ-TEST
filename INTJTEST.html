@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>INTJ 典型度診断</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F2442;--ink:#EEF3FA;--sub:#AFC1D8;--line:rgba(207,224,245,.22);--accent:#F08A3A;--panel:#173459;
+  color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;line-height:1.7}
+main{position:relative;z-index:1;max-width:560px;margin:24px auto 40px;padding:28px 20px 32px;
+  background:rgba(15,36,66,.78);border:1px solid rgba(207,224,245,.18);border-radius:12px}
+@media (max-width:600px){main{margin:16px 12px 32px}}
+.bgart{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+h1,h2,h3{font-family:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:800;line-height:1.3;margin:0}
+h1{font-size:2rem}h2{font-size:1.25rem;margin-top:28px}
+p{margin:.6em 0}.sub{color:var(--sub)}
+button,select,input{font:inherit;color:inherit}
+button{cursor:pointer}
+.main-btn{display:block;width:100%;padding:14px;border:0;background:var(--accent);color:#0F2442;font-weight:700;margin-top:14px}
+.opt{display:block;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;background:var(--panel);border:1px solid var(--line)}
+.opt:hover{border-color:var(--ink)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label{display:block;margin-top:16px;font-weight:700}
+select,input{display:block;width:100%;padding:12px;margin-top:6px;background:var(--panel);border:1px solid var(--line)}
+.err{color:#FF9C8A;font-size:.9rem;min-height:1.4em}
+.progress{font-size:.85rem;color:var(--sub)}
+.bar{height:3px;background:var(--line);margin:6px 0 18px}.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.stmt{font-size:1rem;font-weight:700;margin-bottom:12px;color:var(--sub)}
+.scale{display:block}
+.triRow{display:flex;align-items:center;gap:8px;margin-top:10px}
+.triRow span{width:2.5em;font-weight:700;font-size:.9rem}
+.triRow button{flex:0 0 52px;padding:10px 0;background:var(--panel);border:1px solid var(--line);font-size:1.05rem}
+.triRow button.on{background:var(--accent);color:#0F2442;border-color:var(--accent)}
+.triRow button:disabled{cursor:default;opacity:.55}
+.triRow button.on:disabled{opacity:1}
+.triOrder{margin-top:14px;font-size:1.05rem}
+.triOrder b{color:var(--accent)}
+.triTools{display:flex;gap:8px;margin-top:8px}
+.triTools .xbtn{text-align:center;text-decoration:none;box-sizing:border-box}
+.same{margin:0}
+.triTools .same.on{border-color:var(--ink);color:var(--ink);font-weight:700}
+.xbtn{text-align:center;text-decoration:none;box-sizing:border-box}
+.same{display:block;margin:4px auto 0;background:none;border:1px solid var(--line);color:var(--sub);padding:8px 20px;font-size:.85rem}
+.scale button{padding:12px 4px;background:var(--panel);border:1px solid var(--line);font-size:.85rem}
+.back{background:none;border:0;color:var(--sub);padding:10px 0;font-size:.9rem}
+/* the memorable element: typicality gauge */
+.gauge{position:relative;margin:22px 0 6px;height:56px;border-bottom:1px solid var(--ink)}
+.gauge .scaleTxt{display:flex;justify-content:space-between;font-size:.72rem;color:var(--sub);margin-top:4px}
+.needle{position:absolute;bottom:0;width:2px;height:56px;background:var(--accent);transition:left .8s ease}
+.needle b{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);font-family:"Shippori Mincho B1",serif;font-size:1.6rem;white-space:nowrap}
+.verdict{font-family:"Shippori Mincho B1",serif;font-size:1.6rem;font-weight:800;margin-top:28px}
+.typeLine{font-size:1.05rem;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.92rem}
+td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:right;color:var(--sub)}
+.char{padding:12px 0;border-bottom:1px solid var(--line)}
+.char .nm{font-weight:700;font-size:1.05rem}.char .meta{font-size:.85rem;color:var(--sub)}
+.char .why{font-size:.88rem}
+.tag{font-size:.75rem;border:1px solid var(--line);padding:0 6px;margin-left:6px;color:var(--sub)}
+.me td{font-weight:700;color:var(--accent)}
+.note{font-size:.8rem;color:var(--sub);margin-top:28px}
+.hidden{display:none}
+@media (prefers-reduced-motion: reduce){.needle,.bar i{transition:none}}
+</style>
+</head>
+<body>
+<svg class="bgart" viewBox="0 0 380 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<defs>
+<pattern id="mn" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M8 0H0V8" fill="none" stroke="#CFE0F5" stroke-opacity=".05" stroke-width=".5"/></pattern>
+<pattern id="mj" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#CFE0F5" stroke-opacity=".09" stroke-width=".5"/></pattern>
+</defs>
+<rect x="-400" y="-400" width="1180" height="1400" fill="#0F2442"/>
+<rect x="-400" y="-400" width="1180" height="1400" fill="url(#mn)"/>
+<rect x="-400" y="-400" width="1180" height="1400" fill="url(#mj)"/>
+<g fill="none" stroke="#CFE0F5" stroke-width=".6">
+<g stroke-opacity=".13"><circle cx="330" cy="70" r="90"/><circle cx="330" cy="70" r="62"/><circle cx="330" cy="70" r="28"/>
+<path d="M20 300H140V340H200V420H20Z"/><path d="M60 300V420"/><circle cx="80" cy="520" r="70"/><circle cx="80" cy="520" r="44"/>
+<path d="M240 470L360 470L360 560L300 600"/></g>
+<g stroke-opacity=".07"><circle cx="60" cy="110" r="120"/><path d="M0 230L380 150"/><path d="M0 260L380 380"/>
+<rect x="220" y="230" width="140" height="90"/><path d="M150 600Q190 520 260 500T380 440"/><circle cx="170" cy="200" r="150"/></g>
+<g stroke-opacity=".1" stroke-dasharray="12 3 2 3"><path d="M220 70H380"/><path d="M330 0V170"/><path d="M0 520H170"/><path d="M80 430V600"/></g>
+<g stroke-opacity=".11"><path d="M240 160H360M240 156V164M360 156V164"/><path d="M10 450V590M6 450H14M6 590H14"/></g>
+</g>
+<g fill="#CFE0F5" fill-opacity=".15" font-size="12" font-family="sans-serif"><text x="282" y="182">Ø180</text><text x="18" y="446">R70</text><text x="236" y="590">DWG INTJ-01 / S 1:2</text></g>
+<g fill="none" stroke="#F08A3A" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+<g transform="translate(58,92) rotate(16) scale(.85)" stroke-opacity=".5"><path d="M-17 0H17L15-7H-15Z"/><path d="M-14-7H14L11-23Q17-46 6-61L-1-67L-3-59Q-19-54-20-44L-10-40Q-8-33-13-24Z"/><circle cx="-7" cy="-49" r="1.5"/></g>
+<g transform="translate(250,88) rotate(78) scale(.85)" stroke-opacity=".45"><path d="M-15 0H15L13-7H-13Z"/><path d="M-10-7Q-7-28-6-36H6Q7-28 10-7"/><path d="M-8-36H8V-40H-8Z"/><path d="M-7-40Q-11-52 0-64Q11-52 7-40"/><path d="M3-58L-3-49"/><circle cy="-67" r="3"/></g>
+<g transform="translate(62,500) rotate(-62)" stroke-opacity=".45"><path d="M-16 0H16L14-7H-14Z"/><path d="M-11-7L-9-40H9L11-7"/><path d="M-13-40H13V-52H-13Z"/><path d="M-13-52V-58H-7V-52M-3-52V-58H3V-52M7-52V-58H13V-52"/></g>
+<g transform="translate(316,566) rotate(-74)" stroke-opacity=".55"><path d="M-20 0H20L18-8H-18Z"/><path d="M-14-8Q-10-38-7-50H7Q10-38 14-8"/><path d="M-12-50H12V-57H-12Z"/><path d="M-10-57Q-14-72 0-75Q14-72 10-57"/><path d="M0-75V-92M-6-86H6"/></g>
+<g transform="translate(182,482) rotate(104)" stroke-opacity=".4"><path d="M-13 0H13L11-6H-11Z"/><path d="M-8-6Q-5-19-5-24H5Q5-19 8-6"/><path d="M-7-24H7V-28H-7Z"/><circle cy="-37" r="9"/></g>
+<g transform="translate(362,452) rotate(-22) scale(.7)" stroke-opacity=".3"><path d="M-15 0H15L13-7H-13Z"/><path d="M-10-7Q-7-28-6-36H6Q7-28 10-7"/><path d="M-8-36H8V-40H-8Z"/><path d="M-7-40Q-11-52 0-64Q11-52 7-40"/><circle cy="-67" r="3"/></g>
+</g>
+</svg>
+<main>
+
+<section id="s-intro">
+  <h1>INTJ 典型度診断</h1>
+  <p class="sub">エニアグラムとトライタイプから、あなたがどれだけ「教科書どおりのINTJ」かを測り、似ているキャラを探します。</p>
+  <p style="margin-top:20px;font-weight:700">自分のエニアグラムを知っていますか？</p>
+  <button class="opt" id="goInput">知っている（入力する）</button>
+  <button class="opt" id="goQuiz">知らない（36問で判定する）</button>
+</section>
+
+<section id="s-input" class="hidden">
+  <h2 style="margin-top:0">タイプを入力</h2>
+  <label for="inWing">エニアグラム（本体とウイング）</label>
+  <select id="inWing"></select>
+  <label>トライタイプ</label>
+  <p class="sub" style="font-size:.85rem;margin-top:4px">本体のグループは自動で決まります。残り2つのグループから1つずつ、<b>強いと思う順に</b>タップしてください。</p>
+  <div id="triRows"></div>
+  <div class="triOrder" id="triOrder"></div>
+  <div class="triTools"><button class="same" id="triReset">選び直す</button><button class="same" id="triUnknown">分からない</button></div>
+  <div class="err" id="inErr"></div>
+  <button class="main-btn" id="inSubmit">結果を見る</button>
+  <button class="back" data-home>最初に戻る</button>
+</section>
+
+<section id="s-quiz" class="hidden">
+  <div class="progress" id="qProg"></div>
+  <div class="bar"><i id="qBar"></i></div>
+  <div class="stmt" id="qText"></div>
+  <div class="scale" id="qScale"></div>
+  <button class="back" id="qBack">ひとつ前に戻る</button>
+</section>
+
+<section id="s-result" class="hidden">
+  <div class="sub">INTJ典型度</div>
+  <div class="gauge"><div class="needle" id="needle" style="left:0"><b id="pct"></b></div></div>
+  <div class="gauge-labels sub" style="display:flex;justify-content:space-between;font-size:.72rem"><span>異端</span><span>個性派</span><span>典型寄り</span><span>王道</span></div>
+  <div class="verdict" id="verdict"></div>
+  <div class="typeLine" id="typeLine"></div>
+  <p id="comment"></p>
+
+  <h2>内訳</h2>
+  <table id="breakdown"></table>
+
+  <h2>似ているキャラ</h2>
+  <div id="chars"></div>
+
+  <h2>INTJキャラ典型度ランキング</h2>
+  <p class="sub" style="font-size:.85rem">説1の値で並べています。トライタイプ不明の説は本体＋ウイングだけで算出。</p>
+  <table id="ranking"></table>
+
+  <h2>結果をシェア</h2>
+  <div class="share">
+    <a class="main-btn xbtn" id="xShare" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="same" id="copyRes">結果をコピー</button>
+    <div class="sub" id="copyMsg" style="font-size:.8rem;text-align:center;min-height:1.2em"></div>
+  </div>
+  <p class="note">心理検査ではなく、遊びの診断です。キャラのタイプは海外の性格データベース（PDB）の投票などをもとにしたファンの見立てです。</p>
+  <button class="main-btn" data-home>もう一度診断する</button>
+</section>
+
+</main>
+
+<script>
+/* ===== 編集しやすいデータ ===== */
+
+// INTJでのよく見かける度（本体+ウイング）
+const WING_SCORE={"5w6":100,"5w4":95,"1w9":90,"6w5":80,"3w4":75,"8w9":65,"1w2":60,"4w5":55,"8w7":50,
+  "4w3":35,"3w2":40,"6w7":40,"9w1":40,"7w8":30,"9w8":30,"7w6":15,"2w1":15,"2w3":10};
+// トライタイプ2・3番目の数字の典型度
+const TRI_SCORE={5:100,1:95,3:85,6:80,8:75,4:60,9:55,7:45,2:25};
+
+// キャラ一覧（mbtiが空ならMBTI不問、triが空ならトライタイプ不明）
+// kari:true はClaudeが置いた仮データ。自分の見立てに差し替えてください
+// s: 説の一覧（先頭が説1）。src は出どころ
+const CHARS=[
+ {n:"ロイド・フォージャー",w:"SPY×FAMILY",s:[{e:"6w5",tri:"613",src:"PDB多数"},{e:"1w9",tri:"",src:"PDB次点"}]},
+ {n:"シルヴィア・シャーウッド",w:"SPY×FAMILY",s:[{e:"1w9",tri:"163",src:"PDB多数"}]},
+ {n:"ヒューベルト＝フォン＝ベストラ",w:"ファイアーエムブレム 風花雪月",s:[{e:"6w5",tri:"613",src:"PDB多数"}]},
+ {n:"リシテア＝フォン＝コーデリア",w:"ファイアーエムブレム 風花雪月",s:[{e:"5w4",tri:"",src:"PDB多数"}]},
+ {n:"ハンネマン＝フォン＝エッサー",w:"ファイアーエムブレム 風花雪月",s:[{e:"5w4",tri:"",src:"作者の見立て"}]},
+ {n:"四宮かぐや",w:"かぐや様は告らせたい",s:[{e:"8w7",tri:"",src:"作者の見立て"},{e:"5w6",tri:"521",src:"PDB多数"},{e:"6w5",tri:"261",src:"個人考察"}]},
+ {n:"立花ユズヒコ",w:"あたしンち",s:[{e:"9w1",tri:"",src:"暫定"},{e:"6w7",tri:"",src:"別サイト"}]},
+ {n:"ジン",w:"名探偵コナン",s:[{e:"8w9",tri:"",src:"作者の見立て"},{e:"8w7",tri:"",src:"PDB多数"},{e:"6w5",tri:"",src:"PDB次点"}]},
+ {n:"ピッコロ",w:"ドラゴンボール",s:[{e:"5w6",tri:"584",src:"PDB多数"}]},
+ {n:"永沢君男",w:"ちびまる子ちゃん",s:[{e:"5w6",tri:"",src:"作者の見立て"}]},
+ {n:"白鳥任三郎",w:"名探偵コナン",s:[{e:"1w9",tri:"",src:"作者の見立て"}]},
+ {n:"メタナイト",w:"星のカービィ",s:[{e:"1w9",tri:"",src:"暫定"}]},
+ {n:"セフィロス",w:"ファイナルファンタジーVII",s:[{e:"1w9",tri:"",src:"PDB多数"},{e:"5w4",tri:"584",src:"個人考察"}]},
+];
+
+// 簡易判定：二択の比較式。全タイプの組み合わせ36通り、各タイプ8回登場
+const PAIRS=[
+ [1, "物事は正しいやり方でやるべきだ", 3, "成果を出して認められたい"],
+ [9, "揉め事は避けて穏やかに過ごしたい", 2, "頼られると、つい手を貸してしまう"],
+ [8, "主導権を他人に握られたくない", 1, "自分の基準に届かないと落ち着かない"],
+ [3, "人からどう見られるかを意識している", 8, "弱みは見せず、強くありたい"],
+ [9, "自分の意見より場の調和を優先しがち", 5, "十分に理解するまで、動く前に観察したい"],
+ [6, "最悪の事態を想定して備えておきたい", 4, "自分は人と根本的に違うと感じる"],
+ [2, "人の役に立てているときが一番満たされる", 3, "目標を立てて効率よく達成したい"],
+ [6, "相手や仕組みが信頼できるかをよく見極める", 3, "失敗した姿は人に見せたくない"],
+ [5, "自分の時間やエネルギーを奪われたくない", 7, "楽しいことや新しい可能性を探していたい"],
+ [7, "退屈や制限されることが苦手だ", 1, "雑なやり方がつい気になる"],
+ [1, "感情より、何が正しいかで判断したい", 9, "やるべきことをつい後回しにする"],
+ [5, "気になることは納得いくまで調べ込む", 3, "どうせやるなら一番を取りたい"],
+ [5, "人と会ったあとは一人で回復したい", 8, "理不尽な相手には正面から立ち向かう"],
+ [8, "自分の縄張りや大切な人は全力で守る", 7, "予定を詰め込み、いろいろ手を出しがち"],
+ [6, "決断の前に信頼できる人の意見を確かめたい", 7, "つらいことより前向きな面を見たい"],
+ [7, "やるべきことより楽しいことを優先しがち", 9, "どちらでもいいと思うことが多い"],
+ [8, "思ったことははっきり言う", 6, "権威を頼りにしつつ、疑ってもいる"],
+ [4, "ありきたりより自分らしさを大事にしたい", 5, "知識を蓄えることに安心感がある"],
+ [4, "自分の気持ちを深く掘り下げてしまう", 9, "何事も穏やかで落ち着いているのが一番だ"],
+ [5, "感情より分析で物事を捉えたい", 2, "相手の気持ちの変化にすぐ気づく"],
+ [4, "何かが欠けているような感覚がある", 3, "有能な人だと思われたい"],
+ [2, "自分より相手の望みを優先しがち", 8, "自分の力で状況を動かしたい"],
+ [5, "一歩引いた場所から状況を眺めていたい", 6, "安心できる決まりや仕組みがほしい"],
+ [3, "過程より結果を出すことが大事だ", 9, "流れに身を任せるほうが楽だ"],
+ [1, "ルールや約束はきちんと守りたい", 6, "チャンスより先にリスクが目に入る"],
+ [1, "自分に厳しいほうだ", 2, "感謝されると報われた気持ちになる"],
+ [8, "人に支配されるのは我慢できない", 9, "人の意見に合わせることが多い"],
+ [4, "自分だけの美意識やこだわりがある", 1, "間違いを見ると正したくなる"],
+ [7, "アイデアが次々に浮かんでくる", 4, "本当の自分は理解されにくいと思う"],
+ [7, "縛られず自由でいたい", 2, "人とのつながりを何より大事にしたい"],
+ [2, "困っている人を放っておけない", 4, "表面的な付き合いより本物の感情を求める"],
+ [3, "場に合わせて自分を演出できる", 7, "嫌な気分はすぐ別のことでまぎらわす"],
+ [6, "一度信頼した仲間には忠実でいたい", 9, "自分のペースを乱されたくない"],
+ [8, "挑まれたら受けて立つ", 4, "みんなと同じになるのが嫌だ"],
+ [1, "物事をきちんと整えておきたい", 5, "必要最低限のもので満足できる"],
+ [6, "不安で何度も確認してしまう", 2, "人から好かれていたい"]
+];
+
+const SHARE_URL="https://claude.ai/artifact/MN5kN6MhfvyKhwbG3vA9F4";
+/* ===== ここからロジック ===== */
+const $=id=>document.getElementById(id);
+const CENTER={8:"腹",9:"腹",1:"腹",2:"心",3:"心",4:"心",5:"頭",6:"頭",7:"頭"};
+const adj=n=>[n===1?9:n-1,n===9?1:n+1];
+const NAMES={1:"改革する人",2:"助ける人",3:"達成する人",4:"個性的な人",5:"調べる人",6:"忠実な人",7:"熱中する人",8:"挑戦する人",9:"平和をもたらす人"};
+
+function screen(id){["s-intro","s-input","s-quiz","s-result"].forEach(s=>$(s).classList.toggle("hidden",s!==id));window.scrollTo(0,0)}
+document.querySelectorAll("[data-home]").forEach(b=>b.onclick=()=>screen("s-intro"));
+
+// 入力ルート
+const sel=$("inWing");
+for(let n=1;n<=9;n++)adj(n).forEach(w=>{const o=document.createElement("option");o.value=`${n}w${w}`;o.textContent=`${n}w${w}`;sel.appendChild(o)});
+sel.value="5w6";
+const GROUPS=[["腹",[8,9,1]],["心",[2,3,4]],["頭",[5,6,7]]];
+let triPick=[],triUnknown=false;
+function drawTri(){
+  const core=+sel.value[0];
+  $("triRows").innerHTML="";
+  GROUPS.forEach(([g,ns])=>{
+    const row=document.createElement("div");row.className="triRow";
+    row.innerHTML=`<span>${g}</span>`;
+    ns.forEach(n=>{const b=document.createElement("button");b.textContent=n;
+      const isCore=CENTER[core]===g;
+      if(isCore){b.disabled=true;if(n===core)b.classList.add("on")}
+      else{
+        if(triPick.includes(n))b.classList.add("on");
+        if(triUnknown)b.disabled=true;
+        b.onclick=()=>{
+          const i=triPick.findIndex(x=>CENTER[x]===g);
+          if(i>=0)triPick[i]=n;else if(triPick.length<2)triPick.push(n);
+          drawTri();
+        };
+      }
+      row.appendChild(b)});
+    $("triRows").appendChild(row);
+  });
+  $("triUnknown").classList.toggle("on",triUnknown);
+  $("triOrder").innerHTML=triUnknown?'強い順：<b>トライタイプ不明</b>':
+    `強い順：<b>${core}</b>（本体） → <b>${triPick[0]??"？"}</b> → <b>${triPick[1]??"？"}</b>`;
+}
+sel.onchange=()=>{triPick=[];drawTri()};
+$("triReset").onclick=()=>{triPick=[];triUnknown=false;drawTri()};
+$("triUnknown").onclick=()=>{triUnknown=!triUnknown;triPick=[];drawTri()};
+$("goInput").onclick=()=>{triPick=[];triUnknown=false;drawTri();$("inErr").textContent="";screen("s-input")};
+$("inSubmit").onclick=()=>{
+  const ew=sel.value,core=+ew[0];
+  if(!triUnknown&&triPick.length<2)return $("inErr").textContent="トライタイプを2つ選ぶか、「分からない」を押してください。";
+  $("inErr").textContent="";showResult(ew,triUnknown?"":`${core}${triPick[0]}${triPick[1]}`);
+};
+
+// 質問ルート
+let qi=0,qa=[];
+$("goQuiz").onclick=()=>{qi=0;qa=[];screen("s-quiz");showQ()};
+function showQ(){
+  const q=PAIRS[qi];
+  $("qProg").textContent=`${qi+1} / ${PAIRS.length}`;$("qBar").style.width=(qi/PAIRS.length*100)+"%";
+  $("qText").textContent="どちらがより自分に近い？";$("qScale").innerHTML="";
+  [[q[1],0],[q[3],1],["同じくらい",2]].forEach(([l,v])=>{const b=document.createElement("button");b.className=v===2?"same":"opt";b.textContent=l;
+    b.onclick=()=>{qa[qi]=v;qi++;qi<PAIRS.length?showQ():judge()};$("qScale").appendChild(b)});
+  $("qBack").style.visibility=qi?"visible":"hidden";
+}
+$("qBack").onclick=()=>{if(qi>0){qi--;showQ()}};
+function judge(){
+  const s={};for(let n=1;n<=9;n++)s[n]=0;
+  qa.forEach((v,k)=>{const q=PAIRS[k];if(v===0)s[q[0]]+=1;else if(v===1)s[q[2]]+=1;else{s[q[0]]+=.5;s[q[2]]+=.5}});
+  // 同点はINTJ典型度の高い数字を優先
+  const order=Object.keys(s).map(Number).sort((a,b)=>s[b]-s[a]||TRI_SCORE[b]-TRI_SCORE[a]);
+  const core=order[0];const [w1,w2]=adj(core);const wing=s[w1]>=s[w2]?w1:w2;
+  const others=["腹","心","頭"].filter(c=>c!==CENTER[core]).map(c=>order.find(n=>CENTER[n]===c))
+    .sort((a,b)=>s[b]-s[a]);
+  showResult(`${core}w${wing}`,`${core}${others[0]}${others[1]}`);
+}
+
+// 結果
+function showResult(ew,tri){
+  const core=+ew[0];
+  const a=WING_SCORE[ew]??30;
+  const parts=[["本体とウイング",ew,a]];
+  if(tri){const t2=+tri[1],t3=+tri[2];parts.push(["トライタイプ2番目",String(t2),TRI_SCORE[t2]],["トライタイプ3番目",String(t3),TRI_SCORE[t3]])}
+  const pct=typOf(ew,tri);
+  const v=pct>=85?"王道のINTJ":pct>=70?"典型寄りのINTJ":pct>=50?"個性派のINTJ":"異端のINTJ";
+  // どこが一番典型から外れているか
+  const low=parts.reduce((m,p)=>p[2]<m[2]?p:m);
+  let com;
+  if(pct>=85)com="教科書に載せてもいいレベルです。INTJらしさの中心にいます。";
+  else if(low[2]>=75)com="全体的にINTJらしい構成で、極端な外れはありません。";
+  else com=`いちばん典型から外れているのは${low[0]}の「${low[1]}」。ここがあなたの“INTJっぽくない”顔です。`;
+  if(!tri)com+="（トライタイプ不明のため、本体とウイングだけで算出しています）";
+  $("verdict").textContent=v;
+  $("typeLine").textContent=`${ew}（${NAMES[core]}） / トライタイプ ${tri||"不明"}`;
+  $("comment").textContent=com;
+  $("pct").textContent=pct+"%";
+  $("needle").style.left="0%";requestAnimationFrame(()=>requestAnimationFrame(()=>$("needle").style.left=pct+"%"));
+  $("breakdown").innerHTML=parts.map(p=>`<tr><td>${p[0]}：${p[1]}</td><td>典型度 ${p[2]}</td></tr>`).join("");
+  renderChars(ew,tri,pct);
+  const top=CHARS.map(c=>matchScore(c,ew,tri,pct)).sort((x,y)=>y.sc-x.sc)[0].ch.n;
+  const txt=`私のINTJ典型度は${pct}%「${v}」でした\n${ew}・トライタイプ${tri||"不明"}\n似ているキャラ：${top}\n#INTJ典型度診断`;
+  $("xShare").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(SHARE_URL);
+  $("copyRes").onclick=()=>{const t=txt+"\n"+SHARE_URL;
+    (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>$("copyMsg").textContent="コピーしました",()=>$("copyMsg").textContent="コピーできませんでした")};
+  $("copyMsg").textContent="";
+  screen("s-result");
+}
+
+function typOf(ew,tri){
+  const a=WING_SCORE[ew]??30;
+  if(!tri)return Math.round(a);
+  return Math.round(a*.6+TRI_SCORE[+tri[1]]*.25+TRI_SCORE[+tri[2]]*.15);
+}
+const tier=p=>p>=85?"王道":p>=70?"典型寄り":p>=50?"個性派":"異端";
+function scoreTheory(t,ew,tri,myPct){
+  let sc=0,why=[];
+  if(t.e[0]===ew[0]){sc+=40;why.push("本体が同じ")}
+  if(t.e===ew){sc+=20;why.push("ウイングも同じ")}
+  if(t.tri){
+    const shared=[...t.tri].filter(d=>tri.includes(d)).length;sc+=shared*10;
+    if(t.tri===tri){sc+=10;why.push("トライタイプ完全一致")}
+    else if(shared>=2)why.push(`トライタイプが${shared}つ共通`);
+  }else if(t.e[0]!==ew[0]&&tri.includes(t.e[0])){sc+=15;why.push(`相手の本体${t.e[0]}があなたのトライタイプにある`)}
+  const diff=Math.abs(t.pct-myPct);
+  sc+=Math.max(0,20-diff/2);
+  if(diff<=8)why.push("典型度が近い");
+  return {sc,why,diff};
+}
+function matchScore(ch,ew,tri,myPct){
+  let best=null;
+  ch.s.forEach((t,k)=>{const r=scoreTheory(t,ew,tri,myPct);if(!best||r.sc>best.sc)best={...r,k}});
+  return {ch,...best,diff:Math.abs(ch.pct-myPct)};
+}
+function theoryLine(c,hit){
+  return c.s.map((t,k)=>`<span${k===hit?' style="color:var(--ink);font-weight:700"':''}>説${k+1} ${t.e}・${t.tri||"トライ不明"}（${t.src}・典型度${t.pct}）</span>`).join("<br>");
+}
+function charHTML(r,tag,showHit){
+  const c=r.ch;
+  return `<div class="char"><div class="nm">${c.n}${tag?`<span class="tag">${tag}</span>`:""}</div>
+  <div class="meta">${c.w}</div>
+  <div class="meta">${theoryLine(c,showHit?r.k:-1)}</div>
+  <div class="why">${showHit&&c.s.length>1?`説${r.k+1}で一致：`:""}${r.why.length?r.why.join("、"):"近い要素は少なめ"}</div></div>`;
+}
+function renderChars(ew,tri,myPct){
+  CHARS.forEach(c=>{c.s.forEach(t=>t.pct=typOf(t.e,t.tri));c.pct=c.s[0].pct});
+  const rs=CHARS.map(c=>matchScore(c,ew,tri,myPct)).sort((a,b)=>b.sc-a.sc);
+  const top=rs.slice(0,3);
+  const far=rs.filter(r=>!top.includes(r)).sort((a,b)=>b.diff-a.diff)[0];
+  $("chars").innerHTML=top.map((r,k)=>charHTML(r,k===0?"いちばん近い":"",true)).join("")+(far?charHTML(far,"対極のINTJ",false):"");
+  const rows=CHARS.map(c=>{const ps=c.s.map(t=>t.pct);const lo=Math.min(...ps),hi=Math.max(...ps);
+      return {n:c.n,p:c.pct,r:lo===hi?"":`（説により${lo}〜${hi}）`,me:false}})
+    .concat([{n:"あなた",p:myPct,r:"",me:true}]).sort((a,b)=>b.p-a.p||(a.me?-1:1));
+  $("ranking").innerHTML=rows.map((r,k)=>`<tr${r.me?' class="me"':""}><td>${k+1}. ${r.n}<span style="font-size:.75rem;color:var(--sub)">${r.r}</span></td><td>${r.p}%・${tier(r.p)}</td></tr>`).join("");
+}
+</script>
+</body>
+</html>
