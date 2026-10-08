@@ -21,7 +21,7 @@ p{margin:.6em 0}.sub{color:var(--sub)}
 button,select,input{font:inherit;color:inherit}
 button{cursor:pointer}
 .main-btn{display:block;width:100%;padding:14px;border:0;background:var(--accent);color:#0F2442;font-weight:700;margin-top:14px}
-.opt{display:block;width:100%;text-align:left;padding:14px 16px;margin-bottom:10px;background:var(--panel);border:1px solid var(--line)}
+.opt{display:block;width:100%;text-align:left;padding:14px 16px 14px 26px;margin-bottom:10px;background:var(--panel);border:1px solid var(--line)}
 .opt:hover{border-color:var(--ink)}
 button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 label{display:block;margin-top:16px;font-weight:700}
@@ -38,14 +38,25 @@ select,input{display:block;width:100%;padding:12px;margin-top:6px;background:var
 .triRow button:disabled{cursor:default;opacity:.55}
 .triRow button.on:disabled{opacity:1}
 .triOrder{margin-top:14px;font-size:1.05rem}
+.triRow button{position:relative}
+.rk{position:absolute;top:-7px;right:-6px;font-style:normal;font-size:.8rem;background:var(--bg);color:var(--accent);border-radius:50%;line-height:1;padding:1px}
 .triOrder b{color:var(--accent)}
 .triTools{display:flex;gap:8px;margin-top:8px}
-.triTools .xbtn{text-align:center;text-decoration:none;box-sizing:border-box}
-.same{margin:0}
+.triTools .same{margin:0}
 .triTools .same.on{border-color:var(--ink);color:var(--ink);font-weight:700}
-.xbtn{text-align:center;text-decoration:none;box-sizing:border-box}
+.shareRow{display:flex;gap:8px;align-items:center;margin-top:10px}
+.xbtn{display:inline-block;padding:8px 18px;background:var(--accent);color:#0F2442;font-weight:700;font-size:.9rem;text-decoration:none;border-radius:4px}
+.quizNote{font-size:.8rem;color:var(--sub);line-height:1.6;margin:0 0 14px;padding:8px 10px;border-left:2px solid var(--line)}
+.rare{padding:10px 12px;border:1px solid var(--line);border-radius:6px}
+.rare b{color:var(--accent);font-size:1.15rem}
+.cmp h3{font-size:1rem;margin:16px 0 4px}
+.cmp ul{margin:4px 0 0;padding-left:1.2em}
+.cmp li{margin:4px 0}
 .same{display:block;margin:4px auto 0;background:none;border:1px solid var(--line);color:var(--sub);padding:8px 20px;font-size:.85rem}
-.scale button{padding:12px 4px;background:var(--panel);border:1px solid var(--line);font-size:.85rem}
+.shareRow .same{margin:0}
+.same.sameq{margin:4px 0 0 auto;font-size:.75rem;padding:5px 12px}
+.scale .opt{padding:16px 20px 16px 28px;line-height:1.5}
+.back.topBack{display:block;margin:-8px 0 10px;padding:4px 0}
 .back{background:none;border:0;color:var(--sub);padding:10px 0;font-size:.9rem}
 /* the memorable element: typicality gauge */
 .gauge{position:relative;margin:22px 0 6px;height:56px;border-bottom:1px solid var(--ink)}
@@ -84,13 +95,17 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
 <g stroke-opacity=".1" stroke-dasharray="12 3 2 3"><path d="M220 70H380"/><path d="M330 0V170"/><path d="M0 520H170"/><path d="M80 430V600"/></g>
 <g stroke-opacity=".11"><path d="M240 160H360M240 156V164M360 156V164"/><path d="M10 450V590M6 450H14M6 590H14"/></g>
 </g>
-<g fill="#CFE0F5" fill-opacity=".15" font-size="12" font-family="sans-serif"><text x="282" y="182">Ø180</text><text x="18" y="446">R70</text><text x="236" y="590">DWG INTJ-01 / S 1:2</text></g>
+<g fill="#CFE0F5" fill-opacity=".15" font-size="12" font-family="sans-serif"><text x="282" y="182">Ø180</text><text x="300" y="352" transform="rotate(-32 300 352)" fill-opacity=".6">R70</text><text x="236" y="590">DWG INTJ-01 / S 1:2</text></g>
 <g fill="none" stroke="#F08A3A" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
 <g transform="translate(58,92) rotate(16) scale(.85)" stroke-opacity=".5"><path d="M-17 0H17L15-7H-15Z"/><path d="M-14-7H14L11-23Q17-46 6-61L-1-67L-3-59Q-19-54-20-44L-10-40Q-8-33-13-24Z"/><circle cx="-7" cy="-49" r="1.5"/></g>
 <g transform="translate(250,88) rotate(78) scale(.85)" stroke-opacity=".45"><path d="M-15 0H15L13-7H-13Z"/><path d="M-10-7Q-7-28-6-36H6Q7-28 10-7"/><path d="M-8-36H8V-40H-8Z"/><path d="M-7-40Q-11-52 0-64Q11-52 7-40"/><path d="M3-58L-3-49"/><circle cy="-67" r="3"/></g>
 <g transform="translate(62,500) rotate(-62)" stroke-opacity=".45"><path d="M-16 0H16L14-7H-14Z"/><path d="M-11-7L-9-40H9L11-7"/><path d="M-13-40H13V-52H-13Z"/><path d="M-13-52V-58H-7V-52M-3-52V-58H3V-52M7-52V-58H13V-52"/></g>
 <g transform="translate(316,566) rotate(-74)" stroke-opacity=".55"><path d="M-20 0H20L18-8H-18Z"/><path d="M-14-8Q-10-38-7-50H7Q10-38 14-8"/><path d="M-12-50H12V-57H-12Z"/><path d="M-10-57Q-14-72 0-75Q14-72 10-57"/><path d="M0-75V-92M-6-86H6"/></g>
 <g transform="translate(182,482) rotate(104)" stroke-opacity=".4"><path d="M-13 0H13L11-6H-11Z"/><path d="M-8-6Q-5-19-5-24H5Q5-19 8-6"/><path d="M-7-24H7V-28H-7Z"/><circle cy="-37" r="9"/></g>
+<g transform="translate(338,262) rotate(48) scale(.65)" stroke-opacity=".3"><path d="M-13 0H13L11-6H-11Z"/><path d="M-8-6Q-5-19-5-24H5Q5-19 8-6"/><path d="M-7-24H7V-28H-7Z"/><circle cy="-37" r="9"/></g>
+<g transform="translate(26,330) rotate(124) scale(.7)" stroke-opacity=".32"><path d="M-15 0H15L13-7H-13Z"/><path d="M-10-7Q-7-28-6-36H6Q7-28 10-7"/><path d="M-8-36H8V-40H-8Z"/><path d="M-7-40Q-11-52 0-64Q11-52 7-40"/><path d="M3-58L-3-49"/><circle cy="-67" r="3"/></g>
+<g transform="translate(160,30) rotate(-104) scale(.6)" stroke-opacity=".3"><path d="M-16 0H16L14-7H-14Z"/><path d="M-11-7L-9-40H9L11-7"/><path d="M-13-40H13V-52H-13Z"/><path d="M-13-52V-58H-7V-52M-3-52V-58H3V-52M7-52V-58H13V-52"/></g>
+<g transform="translate(110,590) rotate(70) scale(.75)" stroke-opacity=".35"><path d="M-17 0H17L15-7H-15Z"/><path d="M-14-7H14L11-23Q17-46 6-61L-1-67L-3-59Q-19-54-20-44L-10-40Q-8-33-13-24Z"/><circle cx="-7" cy="-49" r="1.5"/></g>
 <g transform="translate(362,452) rotate(-22) scale(.7)" stroke-opacity=".3"><path d="M-15 0H15L13-7H-13Z"/><path d="M-10-7Q-7-28-6-36H6Q7-28 10-7"/><path d="M-8-36H8V-40H-8Z"/><path d="M-7-40Q-11-52 0-64Q11-52 7-40"/><circle cy="-67" r="3"/></g>
 </g>
 </svg>
@@ -105,6 +120,7 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
 </section>
 
 <section id="s-input" class="hidden">
+  <button class="back topBack" data-home>← 最初に戻る</button>
   <h2 style="margin-top:0">タイプを入力</h2>
   <label for="inWing">エニアグラム（本体とウイング）</label>
   <select id="inWing"></select>
@@ -115,12 +131,13 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
   <div class="triTools"><button class="same" id="triReset">選び直す</button><button class="same" id="triUnknown">分からない</button></div>
   <div class="err" id="inErr"></div>
   <button class="main-btn" id="inSubmit">結果を見る</button>
-  <button class="back" data-home>最初に戻る</button>
 </section>
 
 <section id="s-quiz" class="hidden">
+  <button class="back topBack" id="quizHome">← 最初に戻る</button>
   <div class="progress" id="qProg"></div>
   <div class="bar"><i id="qBar"></i></div>
+  <p class="quizNote">理想の自分ではなく、これまでの実際の行動を思い返して選んでください。迷ったときは「昔から変わらない方」を選ぶのがコツです。「同じくらい」は、どうしても決められないときだけ使ってください。</p>
   <div class="stmt" id="qText"></div>
   <div class="scale" id="qScale"></div>
   <button class="back" id="qBack">ひとつ前に戻る</button>
@@ -134,6 +151,9 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
   <div class="typeLine" id="typeLine"></div>
   <p id="comment"></p>
 
+  <h2>典型的なINTJとの比較</h2>
+  <div class="cmp" id="compare"></div>
+
   <h2>内訳</h2>
   <table id="breakdown"></table>
 
@@ -146,8 +166,8 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
 
   <h2>結果をシェア</h2>
   <div class="share">
-    <a class="main-btn xbtn" id="xShare" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="same" id="copyRes">結果をコピー</button>
+    <div class="shareRow"><a class="xbtn" id="xShare" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="same" id="copyRes">結果をコピー</button></div>
     <div class="sub" id="copyMsg" style="font-size:.8rem;text-align:center;min-height:1.2em"></div>
   </div>
   <p class="note">心理検査ではなく、遊びの診断です。キャラのタイプは海外の性格データベース（PDB）の投票などをもとにしたファンの見立てです。</p>
@@ -161,9 +181,9 @@ td{padding:8px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:
 
 // INTJでのよく見かける度（本体+ウイング）
 const WING_SCORE={"5w6":100,"5w4":95,"1w9":90,"6w5":80,"3w4":75,"8w9":65,"1w2":60,"4w5":55,"8w7":50,
-  "4w3":35,"3w2":40,"6w7":40,"9w1":40,"7w8":30,"9w8":30,"7w6":15,"2w1":15,"2w3":10};
+  "4w3":35,"3w2":40,"6w7":40,"9w1":45,"7w8":30,"9w8":40,"7w6":15,"2w1":15,"2w3":10};
 // トライタイプ2・3番目の数字の典型度
-const TRI_SCORE={5:100,1:95,3:85,6:80,8:75,4:60,9:55,7:45,2:25};
+const TRI_SCORE={5:100,1:95,3:85,6:80,8:75,4:60,9:55,7:20,2:15};
 
 // キャラ一覧（mbtiが空ならMBTI不問、triが空ならトライタイプ不明）
 // kari:true はClaudeが置いた仮データ。自分の見立てに差し替えてください
@@ -224,7 +244,42 @@ const PAIRS=[
  [6, "不安で何度も確認してしまう", 2, "人から好かれていたい"]
 ];
 
-const SHARE_URL="https://claude.ai/artifact/MN5kN6MhfvyKhwbG3vA9F4";
+const SHARE_URL=/github\.io$/.test(location.hostname)?location.origin+location.pathname:"";
+const TIER_DESC={
+ "王道":"一般に語られるINTJ像（独立心、分析好き、長期的な戦略）がほぼそのまま当てはまります。INTJの解説を読んで「全部自分のことだ」と感じやすいタイプです。",
+ "典型寄り":"INTJらしさの核は典型と同じです。そこに別のタイプの色が少し混じっていて、解説の一部に「ここは違うかも」と感じる部分があるはずです。",
+ "個性派":"考え方の型はINTJでも、何に突き動かされるかという動機の面で、一般的なINTJ像とはっきり違う部分があります。周りからは「INTJっぽくない一面がある」と見られやすいでしょう。",
+ "異端":"思考はINTJでも、行動の原動力が典型とは大きく違います。INTJの解説がしっくりこないことも多く、「本当にINTJ？」と言われやすいタイプです。"};
+const CORE_DESC={
+ 1:"「正しくあるべき」という倫理の軸が強いINTJです。典型的なINTJが効率のために改善するのに対し、あなたは筋を通すために改善します。他人の雑さや不正に、典型より厳しくなりがちです。",
+ 2:"論理の裏で「人の役に立ちたい」という気持ちが動いていて、典型的なINTJより面倒見がよく、人間関係に心を配ります。",
+ 3:"成果や評価への意識が強いINTJです。典型的なINTJが「自分が納得すればいい」と考えるのに対し、あなたは外から見て有能であることも重視します。行動が速く、実務的です。",
+ 4:"自分らしさや内面の感情を大事にするINTJです。典型より感受性が強く、美意識や独自性へのこだわりがはっきり出ます。",
+ 5:"典型中の典型です。知識と理解で世界に備え、観察してから動きます。一人で考える時間が欠かせない点も、典型的なINTJそのものです。",
+ 6:"先を読んでリスクに備える慎重派のINTJです。戦略的な点は典型と同じですが、動機は「安心・安全」にあります。一度信頼した相手には、典型より強い忠誠心を見せます。",
+ 7:"好奇心と可能性を追う楽観的なタイプで、典型的なINTJより軽やかです。計画を練るより、まず体験したい気持ちが勝ちます。",
+ 8:"主導権と強さを求めるINTJです。典型的なINTJが裏で戦略を練るのに対し、あなたは前に出て、対立も辞さずに実行します。",
+ 9:"平穏と調和を重視し、典型的なINTJより穏やかで、対立を避けて自分のペースを守ります。"};
+const RARITY={1:["王道","INTJの本体として最もよく見られるタイプです。"],5:["王道","INTJの本体として最もよく見られるタイプです。"],
+ 3:["典型寄り","INTJにはわりとよく見られるタイプです。"],6:["典型寄り","INTJにはわりとよく見られるタイプです。"],
+ 4:["比較的珍しい","INTJの中では若干レアなタイプです。"],8:["比較的珍しい","INTJの中では若干レアなタイプです。"],
+ 9:["レア","INTJの中ではレアなタイプです。例はあるものの、かなり少なめです。"],
+ 2:["激レア","INTJでは、もう例が見つからないと言っていいほどの激レア種です。"],
+ 7:["超激レア","INTJでは、調べても例が見つからない超激レア種です。存在自体が珍しいレベルです。"]};
+const FLAVOR={1:"きちんとした几帳面さ",2:"人への温かさ",3:"成果へのこだわり",4:"独自性と感受性",5:"分析的な距離感",6:"慎重さと備え",7:"好奇心と軽やかさ",8:"押しの強さ",9:"穏やかさ"};
+function renderCompare(ew,tri,parts){
+  const core=+ew[0],wing=+ew[2];
+  const r=RARITY[core];
+  let h=`<p class="rare">本体${core}のレア度：<b>${r[0]}</b><br><span class="sub" style="font-size:.88rem">${r[1]}</span></p><p>${CORE_DESC[core]}</p><p>ウイングの${wing}は、そこに「${FLAVOR[wing]}」を加えています。</p>`;
+  if(tri){
+    const c2=+tri[1],c3=+tri[2];
+    h+=`<p>トライタイプでは、${CENTER[c2]}のセンターで${c2}（${FLAVOR[c2]}）、${CENTER[c3]}のセンターで${c3}（${FLAVOR[c3]}）が出ています。${TRI_SCORE[c2]>=75&&TRI_SCORE[c3]>=75?"どちらもINTJによく見られる数字で、典型的な構成です。":"INTJではあまり見かけない数字が含まれていて、ここがあなたの個性になっています。"}</p>`;
+  }
+  const same=parts.filter(p=>p[2]>=75),diff=parts.filter(p=>p[2]<75);
+  if(same.length)h+=`<h3>典型と似ているところ</h3><ul>${same.map(p=>`<li>${p[0]}の「${p[1]}」はINTJによく見られます（典型度${p[2]}）</li>`).join("")}</ul>`;
+  if(diff.length)h+=`<h3>典型と違うところ</h3><ul>${diff.map(p=>`<li>${p[0]}の「${p[1]}」はINTJでは少なめです（典型度${p[2]}）。「${FLAVOR[+p[1][0]]}」が、典型的なINTJより強く出ます</li>`).join("")}</ul>`;
+  $("compare").innerHTML=h;
+}
 /* ===== ここからロジック ===== */
 const $=id=>document.getElementById(id);
 const CENTER={8:"腹",9:"腹",1:"腹",2:"心",3:"心",4:"心",5:"頭",6:"頭",7:"頭"};
@@ -233,6 +288,7 @@ const NAMES={1:"改革する人",2:"助ける人",3:"達成する人",4:"個性�
 
 function screen(id){["s-intro","s-input","s-quiz","s-result"].forEach(s=>$(s).classList.toggle("hidden",s!==id));window.scrollTo(0,0)}
 document.querySelectorAll("[data-home]").forEach(b=>b.onclick=()=>screen("s-intro"));
+$("quizHome").onclick=()=>{if(qi>0&&!confirm("ここまでの回答は消えます。最初に戻りますか？"))return;screen("s-intro")};
 
 // 入力ルート
 const sel=$("inWing");
@@ -246,7 +302,7 @@ function drawTri(){
   GROUPS.forEach(([g,ns])=>{
     const row=document.createElement("div");row.className="triRow";
     row.innerHTML=`<span>${g}</span>`;
-    ns.forEach(n=>{const b=document.createElement("button");b.textContent=n;
+    ns.forEach(n=>{const b=document.createElement("button");const rk=n===core?0:triPick.indexOf(n)+1;b.innerHTML=n+(n===core||rk>0?`<i class="rk">${"①②③"[rk]}</i>`:"");
       const isCore=CENTER[core]===g;
       if(isCore){b.disabled=true;if(n===core)b.classList.add("on")}
       else{
@@ -254,7 +310,8 @@ function drawTri(){
         if(triUnknown)b.disabled=true;
         b.onclick=()=>{
           const i=triPick.findIndex(x=>CENTER[x]===g);
-          if(i>=0)triPick[i]=n;else if(triPick.length<2)triPick.push(n);
+          if(triPick.includes(n))triPick.splice(i,1);
+          else{if(i>=0)triPick.splice(i,1);triPick.push(n)}
           drawTri();
         };
       }
@@ -263,7 +320,7 @@ function drawTri(){
   });
   $("triUnknown").classList.toggle("on",triUnknown);
   $("triOrder").innerHTML=triUnknown?'強い順：<b>トライタイプ不明</b>':
-    `強い順：<b>${core}</b>（本体） → <b>${triPick[0]??"？"}</b> → <b>${triPick[1]??"？"}</b>`;
+    `強い順：<b>${core}</b> ＞ <b>${triPick[0]??"？"}</b> ＞ <b>${triPick[1]??"？"}</b><span class="sub" style="font-size:.8rem">（押した順に②③）</span>`;
 }
 sel.onchange=()=>{triPick=[];drawTri()};
 $("triReset").onclick=()=>{triPick=[];triUnknown=false;drawTri()};
@@ -277,19 +334,35 @@ $("inSubmit").onclick=()=>{
 
 // 質問ルート
 let qi=0,qa=[];
-$("goQuiz").onclick=()=>{qi=0;qa=[];screen("s-quiz");showQ()};
+let QS=[];
+function shuffleQs(){
+  for(let t=0;t<2000;t++){
+    const rest=PAIRS.slice(),out=[];
+    while(rest.length){
+      const prev=out[out.length-1];
+      const ok=rest.filter(q=>!prev||![q[0],q[2]].some(x=>x===prev[0]||x===prev[2]));
+      if(!ok.length)break;
+      const q=ok[Math.floor(Math.random()*ok.length)];
+      rest.splice(rest.indexOf(q),1);
+      out.push(Math.random()<.5?q:[q[2],q[3],q[0],q[1]]);
+    }
+    if(out.length===PAIRS.length)return out;
+  }
+  return PAIRS.slice();
+}
+$("goQuiz").onclick=()=>{qi=0;qa=[];QS=shuffleQs();screen("s-quiz");showQ()};
 function showQ(){
-  const q=PAIRS[qi];
-  $("qProg").textContent=`${qi+1} / ${PAIRS.length}`;$("qBar").style.width=(qi/PAIRS.length*100)+"%";
+  const q=QS[qi];
+  $("qProg").textContent=`${qi+1} / ${QS.length}`;$("qBar").style.width=(qi/QS.length*100)+"%";
   $("qText").textContent="どちらがより自分に近い？";$("qScale").innerHTML="";
-  [[q[1],0],[q[3],1],["同じくらい",2]].forEach(([l,v])=>{const b=document.createElement("button");b.className=v===2?"same":"opt";b.textContent=l;
-    b.onclick=()=>{qa[qi]=v;qi++;qi<PAIRS.length?showQ():judge()};$("qScale").appendChild(b)});
+  [[q[1],0],[q[3],1],["同じくらい",2]].forEach(([l,v])=>{const b=document.createElement("button");b.className=v===2?"same sameq":"opt";b.textContent=l;
+    b.onclick=()=>{qa[qi]=v;qi++;qi<QS.length?showQ():judge()};$("qScale").appendChild(b)});
   $("qBack").style.visibility=qi?"visible":"hidden";
 }
 $("qBack").onclick=()=>{if(qi>0){qi--;showQ()}};
 function judge(){
   const s={};for(let n=1;n<=9;n++)s[n]=0;
-  qa.forEach((v,k)=>{const q=PAIRS[k];if(v===0)s[q[0]]+=1;else if(v===1)s[q[2]]+=1;else{s[q[0]]+=.5;s[q[2]]+=.5}});
+  qa.forEach((v,k)=>{const q=QS[k];if(v===0)s[q[0]]+=1;else if(v===1)s[q[2]]+=1;else{s[q[0]]+=.5;s[q[2]]+=.5}});
   // 同点はINTJ典型度の高い数字を優先
   const order=Object.keys(s).map(Number).sort((a,b)=>s[b]-s[a]||TRI_SCORE[b]-TRI_SCORE[a]);
   const core=order[0];const [w1,w2]=adj(core);const wing=s[w1]>=s[w2]?w1:w2;
@@ -315,15 +388,16 @@ function showResult(ew,tri){
   if(!tri)com+="（トライタイプ不明のため、本体とウイングだけで算出しています）";
   $("verdict").textContent=v;
   $("typeLine").textContent=`${ew}（${NAMES[core]}） / トライタイプ ${tri||"不明"}`;
-  $("comment").textContent=com;
+  $("comment").textContent=TIER_DESC[v.replace("のINTJ","")]+" "+com;
+  renderCompare(ew,tri,parts);
   $("pct").textContent=pct+"%";
   $("needle").style.left="0%";requestAnimationFrame(()=>requestAnimationFrame(()=>$("needle").style.left=pct+"%"));
   $("breakdown").innerHTML=parts.map(p=>`<tr><td>${p[0]}：${p[1]}</td><td>典型度 ${p[2]}</td></tr>`).join("");
   renderChars(ew,tri,pct);
   const top=CHARS.map(c=>matchScore(c,ew,tri,pct)).sort((x,y)=>y.sc-x.sc)[0].ch.n;
   const txt=`私のINTJ典型度は${pct}%「${v}」でした\n${ew}・トライタイプ${tri||"不明"}\n似ているキャラ：${top}\n#INTJ典型度診断`;
-  $("xShare").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(txt)+"&url="+encodeURIComponent(SHARE_URL);
-  $("copyRes").onclick=()=>{const t=txt+"\n"+SHARE_URL;
+  $("xShare").href="https://twitter.com/intent/tweet?text="+encodeURIComponent(txt)+(SHARE_URL?"&url="+encodeURIComponent(SHARE_URL):"");
+  $("copyRes").onclick=()=>{const t=SHARE_URL?txt+"\n"+SHARE_URL:txt;
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>$("copyMsg").textContent="コピーしました",()=>$("copyMsg").textContent="コピーできませんでした")};
   $("copyMsg").textContent="";
   screen("s-result");
@@ -331,8 +405,11 @@ function showResult(ew,tri){
 
 function typOf(ew,tri){
   const a=WING_SCORE[ew]??30;
-  if(!tri)return Math.round(a);
-  return Math.round(a*.6+TRI_SCORE[+tri[1]]*.25+TRI_SCORE[+tri[2]]*.15);
+  let p=tri?a*.6+TRI_SCORE[+tri[1]]*.25+TRI_SCORE[+tri[2]]*.15:a;
+  // 本体2・7は例が見つからないほどのレア種なので15未満に
+  if(ew[0]==="2")p=Math.min(14,p*.25);
+  if(ew[0]==="7")p=Math.min(12,p*.2);
+  return Math.round(p);
 }
 const tier=p=>p>=85?"王道":p>=70?"典型寄り":p>=50?"個性派":"異端";
 function scoreTheory(t,ew,tri,myPct){
